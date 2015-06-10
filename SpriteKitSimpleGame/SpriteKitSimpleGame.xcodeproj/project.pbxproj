@@ -16,6 +16,8 @@
 		7B820EC51B27BAD100E50506 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B820EC41B27BAD100E50506 /* Images.xcassets */; };
 		7B820EC81B27BAD100E50506 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B820EC61B27BAD100E50506 /* LaunchScreen.xib */; };
 		7B820ED41B27BAD100E50506 /* SpriteKitSimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B820ED31B27BAD100E50506 /* SpriteKitSimpleGameTests.m */; };
+		7BFBF44E1B27BDB300AEAD5B /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBF44C1B27BDB300AEAD5B /* Sounds */; };
+		7BFBF44F1B27BDB300AEAD5B /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBF44D1B27BDB300AEAD5B /* sprites.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		7B820ECD1B27BAD100E50506 /* SpriteKitSimpleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpriteKitSimpleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B820ED21B27BAD100E50506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B820ED31B27BAD100E50506 /* SpriteKitSimpleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpriteKitSimpleGameTests.m; sourceTree = "<group>"; };
+		7BFBF44C1B27BDB300AEAD5B /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		7BFBF44D1B27BDB300AEAD5B /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,9 +97,11 @@
 				7B820EBC1B27BAD100E50506 /* GameScene.sks */,
 				7B820EBE1B27BAD100E50506 /* GameViewController.h */,
 				7B820EBF1B27BAD100E50506 /* GameViewController.m */,
-				7B820EC11B27BAD100E50506 /* Main.storyboard */,
 				7B820EC41B27BAD100E50506 /* Images.xcassets */,
 				7B820EC61B27BAD100E50506 /* LaunchScreen.xib */,
+				7B820EC11B27BAD100E50506 /* Main.storyboard */,
+				7BFBF44C1B27BDB300AEAD5B /* Sounds */,
+				7BFBF44D1B27BDB300AEAD5B /* sprites.atlas */,
 				7B820EB21B27BAD100E50506 /* Supporting Files */,
 			);
 			path = SpriteKitSimpleGame;
@@ -207,9 +213,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BFBF44E1B27BDB300AEAD5B /* Sounds in Resources */,
 				7B820EC81B27BAD100E50506 /* LaunchScreen.xib in Resources */,
 				7B820EC51B27BAD100E50506 /* Images.xcassets in Resources */,
 				7B820EBD1B27BAD100E50506 /* GameScene.sks in Resources */,
+				7BFBF44F1B27BDB300AEAD5B /* sprites.atlas in Resources */,
 				7B820EC31B27BAD100E50506 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
