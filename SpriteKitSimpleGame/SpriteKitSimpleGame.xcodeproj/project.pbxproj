@@ -18,6 +18,7 @@
 		7B820ED41B27BAD100E50506 /* SpriteKitSimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B820ED31B27BAD100E50506 /* SpriteKitSimpleGameTests.m */; };
 		7BFBF44E1B27BDB300AEAD5B /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBF44C1B27BDB300AEAD5B /* Sounds */; };
 		7BFBF44F1B27BDB300AEAD5B /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBF44D1B27BDB300AEAD5B /* sprites.atlas */; };
+		7BFBF4521B27D5B100AEAD5B /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBF4511B27D5B100AEAD5B /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		7B820ED31B27BAD100E50506 /* SpriteKitSimpleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpriteKitSimpleGameTests.m; sourceTree = "<group>"; };
 		7BFBF44C1B27BDB300AEAD5B /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		7BFBF44D1B27BDB300AEAD5B /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
+		7BFBF4501B27D5B100AEAD5B /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		7BFBF4511B27D5B100AEAD5B /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				7B820EB71B27BAD100E50506 /* AppDelegate.m */,
 				7B820EB91B27BAD100E50506 /* GameScene.h */,
 				7B820EBA1B27BAD100E50506 /* GameScene.m */,
+				7BFBF4501B27D5B100AEAD5B /* GameOverScene.h */,
+				7BFBF4511B27D5B100AEAD5B /* GameOverScene.m */,
 				7B820EBC1B27BAD100E50506 /* GameScene.sks */,
 				7B820EBE1B27BAD100E50506 /* GameViewController.h */,
 				7B820EBF1B27BAD100E50506 /* GameViewController.m */,
@@ -236,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BFBF4521B27D5B100AEAD5B /* GameOverScene.m in Sources */,
 				7B820EC01B27BAD100E50506 /* GameViewController.m in Sources */,
 				7B820EB81B27BAD100E50506 /* AppDelegate.m in Sources */,
 				7B820EBB1B27BAD100E50506 /* GameScene.m in Sources */,

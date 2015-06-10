@@ -7,12 +7,14 @@
 //
 
 #import "GameScene.h"
+#import "GameOverScene.h"
 
 @interface GameScene()<SKPhysicsContactDelegate>
 
 @property(nonatomic,strong) SKSpriteNode *player;
 @property(nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property(nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property(nonatomic) int monstersDestroyed;
 
 @end
 
@@ -190,7 +192,13 @@ static inline CGPoint rwNormalize(CGPoint a) {
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:CGPointMake(-monster.size.width/2, actualY) duration:actualDuration];
     SKAction * actionMoveDone = [SKAction removeFromParent];
-    [monster runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+    
+    SKAction * loseAction = [SKAction runBlock:^{
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+        SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
+        [self.view presentScene:gameOverScene transition: reveal];
+    }];
+    [monster runAction:[SKAction sequence:@[actionMove, loseAction, actionMoveDone]]];
     
     monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
     monster.physicsBody.dynamic = YES;
@@ -221,6 +229,16 @@ static inline CGPoint rwNormalize(CGPoint a) {
     [projectile removeFromParent];
     [monster removeFromParent];
     
+    self.monstersDestroyed++;
+    
+    if ( self.monstersDestroyed > 30 ) {
+        
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+        SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:YES];
+        [self.view presentScene:gameOverScene transition: reveal];
+        
+    }
+
 }
 
 @end
