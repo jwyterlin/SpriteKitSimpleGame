@@ -8,7 +8,7 @@
 
 #import "GameScene.h"
 
-@interface GameScene()
+@interface GameScene()<SKPhysicsContactDelegate>
 
 @property(nonatomic,strong) SKSpriteNode *player;
 @property(nonatomic) NSTimeInterval lastSpawnTimeInterval;
@@ -17,6 +17,9 @@
 @end
 
 @implementation GameScene
+
+static const uint32_t projectileCategory     =  0x1 << 0;
+static const uint32_t monsterCategory        =  0x1 << 1;
 
 static inline CGPoint rwAdd(CGPoint a, CGPoint b) {
     return CGPointMake(a.x + b.x, a.y + b.y);
@@ -40,6 +43,8 @@ static inline CGPoint rwNormalize(CGPoint a) {
     return CGPointMake(a.x / length, a.y / length);
 }
 
+#pragma mark - Overriding methods
+
 -(id)initWithSize:(CGSize)size {
     
     if ( self = [super initWithSize:size] ) {
@@ -51,6 +56,9 @@ static inline CGPoint rwNormalize(CGPoint a) {
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"player"];
         self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
         [self addChild:self.player];
+        
+        self.physicsWorld.gravity = CGVectorMake(0,0);
+        self.physicsWorld.contactDelegate = self;
         
     }
     
@@ -100,7 +108,14 @@ static inline CGPoint rwNormalize(CGPoint a) {
     SKAction * actionMove = [SKAction moveTo:realDest duration:realMoveDuration];
     SKAction * actionMoveDone = [SKAction removeFromParent];
     [projectile runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
-    
+
+    projectile.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:projectile.size.width/2];
+    projectile.physicsBody.dynamic = YES;
+    projectile.physicsBody.categoryBitMask = projectileCategory;
+    projectile.physicsBody.contactTestBitMask = monsterCategory;
+    projectile.physicsBody.collisionBitMask = 0;
+    projectile.physicsBody.usesPreciseCollisionDetection = YES;
+
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -123,6 +138,30 @@ static inline CGPoint rwNormalize(CGPoint a) {
     [self updateWithTimeSinceLastUpdate:timeSinceLast];
 
 }
+
+#pragma mark - SKPhysicsContactDelegate methods
+
+-(void)didBeginContact:(SKPhysicsContact *)contact {
+
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    } else {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    if ( ( firstBody.categoryBitMask & projectileCategory ) != 0 && ( secondBody.categoryBitMask & monsterCategory ) != 0 ) {
+
+        [self projectile:(SKSpriteNode *) firstBody.node didCollideWithMonster:(SKSpriteNode *) secondBody.node];
+        
+    }
+    
+}
+
+#pragma mark - Private methods
 
 -(void)addMonster {
     
@@ -151,6 +190,12 @@ static inline CGPoint rwNormalize(CGPoint a) {
     SKAction * actionMoveDone = [SKAction removeFromParent];
     [monster runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
     
+    monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
+    monster.physicsBody.dynamic = YES;
+    monster.physicsBody.categoryBitMask = monsterCategory;
+    monster.physicsBody.contactTestBitMask = projectileCategory;
+    monster.physicsBody.collisionBitMask = 0;
+    
 }
 
 -(void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
@@ -164,6 +209,15 @@ static inline CGPoint rwNormalize(CGPoint a) {
         [self addMonster];
         
     }
+    
+}
+
+-(void)projectile:(SKSpriteNode *)projectile didCollideWithMonster:(SKSpriteNode *)monster {
+ 
+    NSLog(@"Hit");
+    
+    [projectile removeFromParent];
+    [monster removeFromParent];
     
 }
 
